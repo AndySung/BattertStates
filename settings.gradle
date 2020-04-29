@@ -1,0 +1,2 @@
+rootProject.name='BatteryState'
+include ':app'
