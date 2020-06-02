@@ -18,11 +18,14 @@ public class BatteryChangedReceiver extends BroadcastReceiver {
 		switch (intent.getAction()) {
 			case Intent.ACTION_BATTERY_CHANGED://"android.intent.action.BATTERY_CHANGED"
 				Log.i("battery", "==============电池电量改变：BATTERY_CHANGED_ACTION");
-				int plugIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,0);
+				int plugIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,-1);
 				switch (plugIn) {
 					case 0:
 						Log.i("battery", "no connected");
-						message.getMsg("no connected");
+						//message.getMsg("no connected");
+						message.getMsg("AC powered：false");
+						message.getMsg("USB powered：false");
+						message.getMsg("Wireless powered：false");
 						break;
 
 					case BatteryManager.BATTERY_PLUGGED_AC:
