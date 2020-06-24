@@ -19,7 +19,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 	private String phoneNumber; // 来电号码
 	private static final String FILE_PATH = Environment.getExternalStorageDirectory().getPath() + "/bqt_callRecords";
 	private MediaRecorder mediaRecorder;
-	
+
 	@Override
 	public void onCallStateChanged(int state, String incomingNumber) {
 		super.onCallStateChanged(state, incomingNumber);
@@ -36,7 +36,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 				break;
 		}
 	}
-	
+
 	private void record() {
 		if (mediaRecorder == null) mediaRecorder = new MediaRecorder();
 		if (phoneNumber == null) phoneNumber = "null_";
@@ -45,7 +45,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 		String data = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault()).format(new Date());
 		File file = new File(FILE_PATH + File.separator + phoneNumber + data);
 		//if (!file.exists()) file.createNewFile();
-		
+
 		mediaRecorder.setAudioSource(MediaRecorder.AudioSource.VOICE_CALL);//指定录音机的声音源
 		//MIC只获取自己说话的声音；VOICE_CALL双方的声音都可以录取，但是由于外国法律的限制，某些大牌手机不支持此参数
 		mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);//设置录制文件的输出格式，如AMR-NB，MPEG-4等
@@ -59,7 +59,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 		mediaRecorder.start();
 		Log.i("bqt", "开始录音！");
 	}
-	
+
 	private void release() {
 		if (mediaRecorder != null) {
 			mediaRecorder.stop();
